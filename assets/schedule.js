@@ -41,19 +41,10 @@
     
     
         database.ref().push(newTrain);
-        
-       
-        $("#name").val("");
-        $("#dest").val("");
-        $("#initialTime").val("");
-        $("#freq").val("");
-    
-        return false;
     
     }); 
     
-
-    database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+    database.ref().on("child_added", function(childSnapshot) {
     
             console.log(childSnapshot.val());
           
@@ -64,7 +55,7 @@
     
 
            
-            var trainTime = moment.unix(initialTime).format("hh:mm");
+            var trainTime = moment(initialTime).format("hh:mm");
            
             var difference =  moment().diff(moment(trainTime),"minutes");
    
